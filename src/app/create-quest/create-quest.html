@@ -1,0 +1,33 @@
+<h2>Nova misija</h2>
+
+<!-- (submit) na formi: poziva se i na klik i na taster Enter. -->
+<form (submit)="submit($event)">
+  <p>
+    <label for="title">Naziv</label>
+    <!-- [formField] vezuje element za polje forme: form.title, bez zagrada. -->
+    <input id="title" type="text" [formField]="form.title" />
+    <!-- form.title() je stanje polja: touched, errors, valid... -->
+    @if (form.title().touched()) {
+      @for (message of form.title().errors(); track $index) {
+        <span>{{ message.message }}</span>
+      }
+    }
+  </p>
+
+  <p>
+    <label for="goal">Cilj</label>
+    <input id="goal" type="number" [formField]="form.goal" />
+    @if (form.goal().touched()) {
+      @for (message of form.goal().errors(); track $index) {
+        <span>{{ message.message }}</span>
+      }
+    }
+  </p>
+
+  @if (error()) {
+    <p>{{ error() }}</p>
+  }
+
+  <!-- form() je stanje cele forme. -->
+  <button type="submit" [disabled]="!form().valid() || pending()">Napravi</button>
+</form>

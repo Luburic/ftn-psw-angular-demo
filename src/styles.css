@@ -91,3 +91,32 @@ header p a {
   border-radius: 99px;
   background: #7c3aed1f;
 }
+
+/* Link "Nova misija" izgleda kao dugme. */
+h2 + a {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.5rem;
+  color: white;
+  background: var(--gradient);
+  &:hover { text-decoration: none; filter: brightness(1.1); }
+}
+
+form {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--card);
+
+  label { display: block; margin-bottom: 0.3rem; font-weight: 600; }
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid light-dark(#ddd6fe, #3b2f5c);
+    border-radius: 0.5rem;
+    font: inherit;
+    background: transparent;
+    &:focus { outline: none; border-color: var(--accent); }
+  }
+  span { display: block; margin-top: 0.3rem; color: #e11d48; font-size: 0.85rem; }
+}

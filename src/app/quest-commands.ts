@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { API } from './api';
-import { Quest } from './quest';
+import { NewQuest, Quest } from './quest';
 
 // Komande menjaju podatke na serveru. Servis nema stanje:
 // šalje zahtev, a odgovor obrađuje stranica.
@@ -15,5 +15,9 @@ export class QuestCommands {
     // post vraća Observable, a firstValueFrom ga pretvara u obećanje koje čekamo.
     // Statusni kod greške postaje izuzetak.
     return firstValueFrom(this.http.post<Quest>(`${API}/quests/${id}/step`, {}));
+  }
+
+  async create(quest: NewQuest): Promise<void> {
+    await firstValueFrom(this.http.post<void>(`${API}/quests`, quest));
   }
 }

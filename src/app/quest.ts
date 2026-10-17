@@ -6,3 +6,8 @@ export interface Quest {
   progress: number;
   xp: number;
 }
+
+export interface NewQuest {
+  title: string;
+  goal: number;
+}

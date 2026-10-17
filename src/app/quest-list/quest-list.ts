@@ -1,5 +1,6 @@
 import { HttpErrorResponse, httpResource } from '@angular/common/http';
 import { Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { API } from '../api';
 import { Quest } from '../quest';
 import { QuestCard } from '../quest-card/quest-card';
@@ -8,7 +9,7 @@ import { Watchlist } from '../watchlist';
 
 @Component({
   selector: 'app-quest-list',
-  imports: [QuestCard],
+  imports: [QuestCard, RouterLink],
   templateUrl: './quest-list.html',
 })
 export class QuestList {

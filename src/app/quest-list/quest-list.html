@@ -1,5 +1,7 @@
 <h2>Misije</h2>
 
+<a routerLink="/quests/new">Nova misija</a>
+
 @if (quests.isLoading()) {
   <p>Učitavanje...</p>
 } @else if (quests.error()) {
