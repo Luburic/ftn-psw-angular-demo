@@ -1,11 +1,9 @@
 <article>
-  <h3>{{ title }}</h3>
-
-  <progress [value]="progress()" [max]="goal"></progress>
+  <h3>{{ quest().title }}</h3>
+  <progress [value]="quest().progress" [max]="quest().goal"></progress>
   {{ percent() }}%
-
-  <!-- Uslov sada živi na jednom mestu, u klasi. -->
-  <p>{{ done() ? 'Završeno!' : 'U toku' }}</p>
-  <button type="button" [disabled]="done()" (click)="step()">+1</button>
-  <button type="button" (click)="reset()">Ispočetka</button>
+  <!-- [class.outline] dodaje klasu dok je uslov tačan. -->
+  <button type="button" [class.outline]="watched()" (click)="watchedChange.emit(!watched())">
+    {{ watched() ? 'Otprati' : 'Prati' }}
+  </button>
 </article>

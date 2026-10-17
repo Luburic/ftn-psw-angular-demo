@@ -1,20 +1,24 @@
 <h2>Misije</h2>
 
-<!-- Alias: vrednost uslova dobija naziv quest. Unutar bloka sigurno nije undefined. -->
 @if (next(); as quest) {
   <p>Sledeća: {{ quest.title }}</p>
 } @else {
   <p>Sve misije su završene!</p>
 }
 
+<p>Praćeno: {{ watchedTitles() || 'ništa' }}</p>
+
 <button type="button" (click)="showDone.set(false)">Sve</button>
 <button type="button" (click)="showDone.set(true)">Završene</button>
 
-<ul>
-  <!-- track: po čemu Angular prepoznaje isti element pre i posle promene niza. -->
-  @for (quest of visible(); track quest.id) {
-    <li>{{ quest.title }} ({{ quest.progress }} / {{ quest.goal }})</li>
-  } @empty {
-    <li>Još nema završenih misija.</li>
-  }
-</ul>
+<!-- Podaci naniže kroz [quest] i [watched], događaji naviše kroz (watchedChange). -->
+<!-- $event je vrednost koju je dete poslalo kroz emit. Misiju roditelj već ima iz petlje. -->
+@for (quest of visible(); track quest.id) {
+  <app-quest-card
+    [quest]="quest"
+    [watched]="isWatched(quest.id)"
+    (watchedChange)="setWatched(quest, $event)"
+  />
+} @empty {
+  <p>Još nema završenih misija.</p>
+}
