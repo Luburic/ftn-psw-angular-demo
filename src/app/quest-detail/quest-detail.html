@@ -1,4 +1,8 @@
-@if (detail(); as quest) {
+@if (detail.isLoading()) {
+  <p>Učitavanje...</p>
+} @else if (detail.error()) {
+  <p>Misija ne postoji.</p>
+} @else if (detail.value(); as quest) {
   <h2>{{ quest.title }}</h2>
   <p>Napredak: {{ quest.progress }} / {{ quest.goal }}</p>
   <p>Nagrada: {{ quest.xp }} XP</p>
@@ -7,8 +11,6 @@
   } @else {
     <button type="button" (click)="watchlist.add(quest)">Prati</button>
   }
-} @else {
-  <p>Misija ne postoji.</p>
 }
 
 <a routerLink="/quests">Nazad na misije</a>

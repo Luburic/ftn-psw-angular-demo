@@ -1,5 +1,7 @@
+import { httpResource } from '@angular/common/http';
 import { Component, computed, inject, signal } from '@angular/core';
-import { Quest, QUESTS } from '../quest';
+import { API } from '../api';
+import { Quest } from '../quest';
 import { QuestCard } from '../quest-card/quest-card';
 import { Watchlist } from '../watchlist';
 
@@ -11,16 +13,19 @@ import { Watchlist } from '../watchlist';
 export class QuestList {
   protected readonly watchlist = inject(Watchlist);
 
-  private readonly quests = signal(QUESTS);
+  // Resurs šalje zahtev čim Angular napravi komponentu.
+  // Odgovor, učitavanje i greška su signali: value, isLoading i error.
+  protected readonly quests = httpResource<Quest[]>(() => `${API}/quests`);
   protected readonly showDone = signal(false);
 
+  // Pre odgovora value() je undefined, pa uzimamo prazan niz.
   protected readonly visible = computed(() => {
-    const quests = this.quests();
+    const quests = this.quests.value() ?? [];
     return this.showDone() ? quests.filter((quest) => quest.progress >= quest.goal) : quests;
   });
 
   protected readonly next = computed(() =>
-    this.quests().find((quest) => quest.progress < quest.goal),
+    (this.quests.value() ?? []).find((quest) => quest.progress < quest.goal),
   );
 
   protected setWatched(quest: Quest, flag: boolean): void {

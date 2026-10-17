@@ -1,6 +1,8 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { QUESTS } from '../quest';
+import { API } from '../api';
+import { Quest } from '../quest';
 import { Watchlist } from '../watchlist';
 
 @Component({
@@ -13,5 +15,7 @@ export class QuestDetail {
 
   readonly id = input.required<string>();
 
-  protected readonly detail = computed(() => QUESTS.find((quest) => quest.id === this.id()));
+  // Adresa je funkcija koja čita id(). Kada se id promeni,
+  // resurs ponovo izvršava funkciju i šalje nov zahtev.
+  protected readonly detail = httpResource<Quest>(() => `${API}/quests/${this.id()}`);
 }
