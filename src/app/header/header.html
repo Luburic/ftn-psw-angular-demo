@@ -1,8 +1,15 @@
 <header>
   <h1>Misije</h1>
-  <!-- routerLink menja adresu bez učitavanja novog dokumenta. -->
   <nav>
     <a routerLink="/">Početna</a> |
     <a routerLink="/quests">Misije</a>
   </nav>
+  <p>
+    Praćeno:
+    @for (quest of watchlist.quests(); track quest.id) {
+      <a [routerLink]="['/quests', quest.id]">{{ quest.title }} {{ percent(quest) }}%</a>
+    } @empty {
+      ništa
+    }
+  </p>
 </header>

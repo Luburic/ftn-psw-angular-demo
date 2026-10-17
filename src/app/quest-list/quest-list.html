@@ -6,17 +6,14 @@
   <p>Sve misije su završene!</p>
 }
 
-<p>Praćeno: {{ watchedTitles() || 'ništa' }}</p>
-
 <button type="button" (click)="showDone.set(false)">Sve</button>
 <button type="button" (click)="showDone.set(true)">Završene</button>
 
-<!-- Podaci naniže kroz [quest] i [watched], događaji naviše kroz (watchedChange). -->
-<!-- $event je vrednost koju je dete poslalo kroz emit. Misiju roditelj već ima iz petlje. -->
+<!-- Kartica ne zna za servis. Spisak joj kaže da li je misija praćena i odlučuje šta njen događaj znači. -->
 @for (quest of visible(); track quest.id) {
   <app-quest-card
     [quest]="quest"
-    [watched]="isWatched(quest.id)"
+    [watched]="watchlist.has(quest.id)"
     (watchedChange)="setWatched(quest, $event)"
   />
 } @empty {

@@ -1,6 +1,7 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { QUESTS } from '../quest';
+import { Watchlist } from '../watchlist';
 
 @Component({
   selector: 'app-quest-detail',
@@ -8,7 +9,8 @@ import { QUESTS } from '../quest';
   templateUrl: './quest-detail.html',
 })
 export class QuestDetail {
-  // Parametar :id iz putanje 'quests/:id'. Na /quests/2 ima vrednost '2'.
+  protected readonly watchlist = inject(Watchlist);
+
   readonly id = input.required<string>();
 
   protected readonly detail = computed(() => QUESTS.find((quest) => quest.id === this.id()));

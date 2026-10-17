@@ -81,3 +81,13 @@ nav { margin-top: 0.5rem; color: var(--muted); }
 /* Komponenta rute blago "uleti" kada je Angular napravi. */
 main > * { display: block; animation: enter 0.35s ease-out both; }
 @keyframes enter { from { opacity: 0; transform: translateY(8px); } }
+
+/* Praćene misije u zaglavlju */
+header p { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.9rem; }
+header p a {
+  display: inline-block;
+  margin: 0.15rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 99px;
+  background: #7c3aed1f;
+}

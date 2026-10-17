@@ -2,6 +2,11 @@
   <h2>{{ quest.title }}</h2>
   <p>Napredak: {{ quest.progress }} / {{ quest.goal }}</p>
   <p>Nagrada: {{ quest.xp }} XP</p>
+  @if (watchlist.has(quest.id)) {
+    <button type="button" class="outline" (click)="watchlist.remove(quest.id)">Otprati</button>
+  } @else {
+    <button type="button" (click)="watchlist.add(quest)">Prati</button>
+  }
 } @else {
   <p>Misija ne postoji.</p>
 }
