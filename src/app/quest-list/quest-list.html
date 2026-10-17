@@ -1,0 +1,20 @@
+<h2>Misije</h2>
+
+<!-- Alias: vrednost uslova dobija naziv quest. Unutar bloka sigurno nije undefined. -->
+@if (next(); as quest) {
+  <p>Sledeća: {{ quest.title }}</p>
+} @else {
+  <p>Sve misije su završene!</p>
+}
+
+<button type="button" (click)="showDone.set(false)">Sve</button>
+<button type="button" (click)="showDone.set(true)">Završene</button>
+
+<ul>
+  <!-- track: po čemu Angular prepoznaje isti element pre i posle promene niza. -->
+  @for (quest of visible(); track quest.id) {
+    <li>{{ quest.title }} ({{ quest.progress }} / {{ quest.goal }})</li>
+  } @empty {
+    <li>Još nema završenih misija.</li>
+  }
+</ul>

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { DailyReset } from './daily-reset/daily-reset';
 import { Header } from './header/header';
-import { QuestCard } from './quest-card/quest-card';
+import { QuestList } from './quest-list/quest-list';
 
 @Component({
   selector: 'app-root',
-  // Komponente koje šablon sme da koristi.
-  imports: [Header, DailyReset, QuestCard],
+  imports: [Header, DailyReset, QuestList],
   templateUrl: './app.html',
 })
 export class App {}
