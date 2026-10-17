@@ -1,0 +1,9 @@
+@if (detail(); as quest) {
+  <h2>{{ quest.title }}</h2>
+  <p>Napredak: {{ quest.progress }} / {{ quest.goal }}</p>
+  <p>Nagrada: {{ quest.xp }} XP</p>
+} @else {
+  <p>Misija ne postoji.</p>
+}
+
+<a routerLink="/quests">Nazad na misije</a>

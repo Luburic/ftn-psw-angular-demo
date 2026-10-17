@@ -1,6 +1,8 @@
 import { ApplicationConfig } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { routes } from './app.routes';
 
-// Delovi radnog okvira koje aplikacija uključuje. Za sada nijedan.
 export const appConfig: ApplicationConfig = {
-  providers: [],
+  // withComponentInputBinding: parametar rute stiže u komponentu kao ulaz.
+  providers: [provideRouter(routes, withComponentInputBinding())],
 };

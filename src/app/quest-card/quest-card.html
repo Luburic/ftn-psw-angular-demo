@@ -1,8 +1,8 @@
 <article>
-  <h3>{{ quest().title }}</h3>
+  <!-- Niz se spaja u adresu: ['/quests', '2'] -> /quests/2 -->
+  <h3><a [routerLink]="['/quests', quest().id]">{{ quest().title }}</a></h3>
   <progress [value]="quest().progress" [max]="quest().goal"></progress>
   {{ percent() }}%
-  <!-- [class.outline] dodaje klasu dok je uslov tačan. -->
   <button type="button" [class.outline]="watched()" (click)="watchedChange.emit(!watched())">
     {{ watched() ? 'Otprati' : 'Prati' }}
   </button>

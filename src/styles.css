@@ -72,3 +72,12 @@ button {
 
 /* Sporedno dugme, npr. "Otprati" */
 button.outline { color: var(--accent); background: transparent; box-shadow: inset 0 0 0 2px var(--accent); }
+
+/* Linkovi i navigacija */
+a { color: var(--accent); font-weight: 600; text-decoration: none; }
+a:hover { text-decoration: underline; }
+nav { margin-top: 0.5rem; color: var(--muted); }
+
+/* Komponenta rute blago "uleti" kada je Angular napravi. */
+main > * { display: block; animation: enter 0.35s ease-out both; }
+@keyframes enter { from { opacity: 0; transform: translateY(8px); } }
