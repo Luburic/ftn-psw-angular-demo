@@ -1,0 +1,36 @@
+:root {
+  color-scheme: light dark;
+  --accent: #7c3aed;
+  --accent-2: #ec4899;
+  --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+  --bg: light-dark(#f5f3ff, #0f0b1a);
+  --card: light-dark(#ffffff, #1c1530);
+  --text: light-dark(#1e1b2e, #ece9f5);
+  --muted: light-dark(#6b6880, #9d97b5);
+  --radius: 0.75rem;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--text);
+  background: radial-gradient(circle at top, light-dark(#ede9fe, #2a1b4d), var(--bg) 60%) fixed;
+}
+
+header {
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 8px 24px #7c3aed22;
+
+  h1 {
+    margin: 0;
+    font-size: 2.25rem;
+    background: var(--gradient);
+    background-clip: text;
+    color: transparent;
+  }
+}
