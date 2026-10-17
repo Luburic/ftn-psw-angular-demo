@@ -19,6 +19,11 @@ export class Watchlist {
     this.state.update((quests) => quests.filter((q) => q.id !== id));
   }
 
+  // Zamenjuje zastarelu kopiju. Misiju koja se ne prati ne dodaje.
+  refresh(quest: Quest): void {
+    this.state.update((quests) => quests.map((q) => (q.id === quest.id ? quest : q)));
+  }
+
   // Metoda čita signal, pa se šablon koji je poziva osvežava kada se spisak promeni.
   has(id: string): boolean {
     return this.state().some((q) => q.id === id);

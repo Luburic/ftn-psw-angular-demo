@@ -1,6 +1,5 @@
 <h2>Misije</h2>
 
-<!-- Redosled je bitan: value() čitamo tek kada nema učitavanja ni greške. -->
 @if (quests.isLoading()) {
   <p>Učitavanje...</p>
 } @else if (quests.error()) {
@@ -12,6 +11,13 @@
     <p>Sve misije su završene!</p>
   }
 
+  @if (pending()) {
+    <p>Čuvanje...</p>
+  }
+  @if (error()) {
+    <p>{{ error() }}</p>
+  }
+
   <button type="button" (click)="showDone.set(false)">Sve</button>
   <button type="button" (click)="showDone.set(true)">Završene</button>
 
@@ -20,6 +26,7 @@
       [quest]="quest"
       [watched]="watchlist.has(quest.id)"
       (watchedChange)="setWatched(quest, $event)"
+      (step)="step(quest.id)"
     />
   } @empty {
     <p>Još nema završenih misija.</p>
