@@ -1,11 +1,12 @@
 <article>
-  <!-- Interpolacija: ispisuje vrednost polja. -->
   <h3>{{ title }}</h3>
 
-  <!-- Vezivanje svojstva: [svojstvo]="izraz". -->
-  <progress [value]="progress" [max]="goal"></progress>
-  {{ progress }} / {{ goal }}
+  <!-- Signal se čita pozivom: progress(). Šablon tako postaje njegov čitalac. -->
+  <progress [value]="progress()" [max]="goal"></progress>
+  {{ progress() }} / {{ goal }}
 
-  <!-- Vezivanje događaja: (događaj)="izraz". -->
-  <button type="button" [disabled]="progress >= goal" (click)="step()">+1</button>
+  <!-- Isti uslov na dva mesta. -->
+  <p>{{ progress() >= goal ? 'Završeno!' : 'U toku' }}</p>
+  <button type="button" [disabled]="progress() >= goal" (click)="step()">+1</button>
+  <button type="button" (click)="reset()">Ispočetka</button>
 </article>

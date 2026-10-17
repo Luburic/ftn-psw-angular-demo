@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-daily-reset',
   templateUrl: './daily-reset.html',
 })
 export class DailyReset {
-  protected secondsLeft = 90;
+  protected readonly secondsLeft = signal(90);
 
   constructor() {
-    // Polje menja tajmer, a ne događaj iz šablona.
-    // Konzola odbrojava, a prikaz stoji na 90.
+    // Signal obaveštava čitaoce, bez obzira odakle promena dolazi.
     setInterval(() => {
-      if (this.secondsLeft > 0) {
-        this.secondsLeft = this.secondsLeft - 1;
+      if (this.secondsLeft() > 0) {
+        this.secondsLeft.update((value) => value - 1);
       }
-      console.log('secondsLeft:', this.secondsLeft);
     }, 1000);
   }
 }
